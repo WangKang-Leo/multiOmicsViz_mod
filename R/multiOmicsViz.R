@@ -197,7 +197,7 @@ calculateCorForTwoMatrices(source_gene,targetOmicsList[[i]],fdrThr)
       targetOmicsName,dim=1)
       if(legend==TRUE){
         legend("topleft",c("positive correlation","negative correlation"),
-        col=c("#FB6542", "#375E97),pch=19)
+        col=c("#FB6542","#375E97"),pch=19)
       }
     }else{
       pdf(outputfile,height=480*8,width=480*5*length(targetOmicsList))
@@ -211,7 +211,7 @@ calculateCorForTwoMatrices(source_gene,targetOmicsList[[i]],fdrThr)
       }
       if(legend==TRUE){
         legend("topleft",c("positive correlation","negative correlation"),
-        col=c("#FB6542", "#375E97),pch=19)
+        col=c("#FB6542","#375E97"),pch=19)
       }
      
 .plotSummaryBar(resultList,chromLength_sourceOmics,genelocate_sourceOmics,
@@ -283,7 +283,7 @@ sourceOmicsName,targetOmicsName,dim=1){
         }
     
         cov <- corrArray[cnag,ovg]
-        color <- ifelse(cov>0,"#FB6542", "#375E97)
+        color <- ifelse(cov>0,"#FB6542","#375E97")
        
         if(la==1){
             if(dim==1){
