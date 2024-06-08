@@ -2,7 +2,7 @@ multiOmicsViz <- function(sourceOmics,sourceOmicsName,chrome_sourceOmics,
 targetOmicsList,targetOmicsName,chrome_targetOmics,fdrThr,outputfile,
 nThreads=NULL,legend=TRUE){
     
-    outputfile <- paste(outputfile,".pdf",sep="")
+    outputfile <- paste(outputfile,".png",sep="")
     
     if(class(sourceOmics)=="SummarizedExperiment"){
       sourceOmics <- assays(sourceOmics,n=1)
@@ -191,7 +191,7 @@ calculateCorForTwoMatrices(source_gene,targetOmicsList[[i]],fdrThr)
     cat("Plot figure...\n")
     
     if(length(targetOmicsList)==1){
-      pdf(outputfile,height=480*5,width=480*5)
+      png(outputfile,height=480*5,width=480*5,res=300)
       .plotHeatMap(resultList,genelocate_sourceOmics,chromLength_sourceOmics,
       genelocate_targetOmics,chromLength_targetOmics,sourceOmicsName,
       targetOmicsName,dim=1)
@@ -200,7 +200,7 @@ calculateCorForTwoMatrices(source_gene,targetOmicsList[[i]],fdrThr)
         col=c("#FB6542","#375E97"),pch=19)
       }
     }else{
-      pdf(outputfile,height=480*8,width=480*5*length(targetOmicsList))
+      png(outputfile,height=480*8,width=480*5*length(targetOmicsList),res=300)
       layout(matrix(c(1:(2*length(targetOmicsList))),length(targetOmicsList),
       2,byrow=TRUE),heights=c(2,1))
       for(i in seq_len(length(resultList))){
