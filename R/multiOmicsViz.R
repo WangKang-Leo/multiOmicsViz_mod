@@ -2,7 +2,7 @@ multiOmicsViz <- function(sourceOmics,sourceOmicsName,chrome_sourceOmics,
 targetOmicsList,targetOmicsName,chrome_targetOmics,fdrThr,outputfile,
 nThreads=NULL,legend=TRUE){
     
-    outputfile <- paste(outputfile,".png",sep="")
+    outputfile <- paste(outputfile,".pdf",sep="")
     
     if(class(sourceOmics)=="SummarizedExperiment"){
       sourceOmics <- assays(sourceOmics,n=1)
@@ -191,16 +191,16 @@ calculateCorForTwoMatrices(source_gene,targetOmicsList[[i]],fdrThr)
     cat("Plot figure...\n")
     
     if(length(targetOmicsList)==1){
-      png(outputfile,height=480*5,width=480*5,res=300)
+      pdf(outputfile,height=480*5,width=480*5,res=300)
       .plotHeatMap(resultList,genelocate_sourceOmics,chromLength_sourceOmics,
       genelocate_targetOmics,chromLength_targetOmics,sourceOmicsName,
       targetOmicsName,dim=1)
       if(legend==TRUE){
         legend("topleft",c("positive correlation","negative correlation"),
-        col=c("red","green"),pch=19)
+        col=c("#FB6542","#375E97"),pch=19)
       }
     }else{
-      png(outputfile,height=480*8,width=480*5*length(targetOmicsList),res=300)
+      pdf(outputfile,height=480*8,width=480*5*length(targetOmicsList),res=300)
       layout(matrix(c(1:(2*length(targetOmicsList))),length(targetOmicsList),
       2,byrow=TRUE),heights=c(2,1))
       for(i in seq_len(length(resultList))){
@@ -211,7 +211,7 @@ calculateCorForTwoMatrices(source_gene,targetOmicsList[[i]],fdrThr)
       }
       if(legend==TRUE){
         legend("topleft",c("positive correlation","negative correlation"),
-        col=c("red","green"),pch=19)
+        col=c("#FB6542","#375E97"),pch=19)
       }
      
 .plotSummaryBar(resultList,chromLength_sourceOmics,genelocate_sourceOmics,
@@ -283,7 +283,7 @@ sourceOmicsName,targetOmicsName,dim=1){
         }
     
         cov <- corrArray[cnag,ovg]
-        color <- ifelse(cov>0,"red","green")
+        color <- ifelse(cov>0,"#FB6542","#375E97")
        
         if(la==1){
             if(dim==1){
