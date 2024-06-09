@@ -42,6 +42,9 @@ calculateCorForTwoMatrices <- function(matrix1,matrix2,fdr){
   corrP[corrP>1] <- 1
   
   corrSig <- apply(corrP,1,.fdrFilter,fdr)
+  cis_cor=p.adjust(diag(corrP),method="BH")
+  cis_cor=ifelse(cis_cor<=netFDRThr,1,0)
+  diag(corrSig)=cis_cor
   corrSig <- t(corrSig)
   
   corrArray <- sign(corrArray)*corrSig
